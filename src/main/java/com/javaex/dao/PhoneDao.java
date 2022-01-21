@@ -43,7 +43,7 @@ public class PhoneDao {
 	}
 	
 	public int personDelete(int personId) {
-		System.out.println("PhoneDao.personInsert()");
+		System.out.println("PhoneDao.personDelete()");
 		
 		int count = sqlSession.delete("phonebook.delete", personId);
 		System.out.println(count + "건 삭제 성공");
