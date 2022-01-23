@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +39,22 @@ public class PhoneController {
 		
 		//리스트로 리다이렉트
 		return "redirect:/phone/list";
-	}	
+	}
+	
+	//vo 클래스가 아니라 map으로 묶는 예제.
+	@RequestMapping(value="/write2", method= {RequestMethod.GET, RequestMethod.POST} )
+	public String write2(@RequestParam("name") String name,
+						 @RequestParam("hp") String hp,
+						 @RequestParam("company") String company
+			) {
+		System.out.println("PhoneController>write2()");
+		
+		//저장
+		phoneDao.personInsert2(name, hp, company);
+		
+		//리다이렉트
+		return "redirect:/phone/list";
+	}
 
 		
 	@RequestMapping(value="/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -67,6 +81,8 @@ public class PhoneController {
 		return "redirect:/phone/list";
 		
 	}
+	
+
 	
 	
 	
